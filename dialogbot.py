@@ -36,16 +36,18 @@ class DialogBot:
     auth = {}
     options = []
     records = {}
-    messages = ["Please DM your contact number, we'll get back to you shortly ^BotAgent",
-                "Please DM us your e-mail address. We'll look into this. ^BotAgent",
-                "We understand your request, we'll incorporate your address in future ^BotAgent",
-                "Thank You for your feedback. We have escalated your concern to our Product team. ^BotAgent",
-                "We are sorry to hear that, can you kindly DM us with more details about the issue! ^BotAgent",
-                "We are sorry you feel this way, DM your connection no and contact no, We'll look into it. ^BotAgent",
-                "We have noted your concern. We'll make sure that this will not happen in future. ^BotAgent",
-                "Please inbox us your contact number. We'll get back to you with assistance. ^BotAgent",
-                "DM your connection no. we'll keep you posted ^BotAgent",
-                "Thank you for letting us know, We'll look into it and get back to soon with assistance. ^BotAgent"]
+    messages = ["Please DM your contact number, we'll get back to you shortly.",
+                "Please DM us your e-mail address. We'll look into this.",
+                "We understand your request, we'll incorporate your address in future.",
+                "Thank You for your feedback. We have escalated your concern to our Product team.",
+                "We are sorry to hear that, can you kindly DM us with more details about the issue!",
+                "We are sorry you feel this way, DM your connection no and contact no, We'll look into it.",
+                "We have noted your concern. We'll make sure that this will not happen in future.",
+                "Please inbox us your contact number. We'll get back to you with assistance.",
+                "DM your connection no. we'll keep you posted.",
+                "Thank you for letting us know, We'll look into it and get back to soon with assistance."]
+
+    bot_agents = ["Riya", "Niky", "Suzy", "Hkk", "Mili", "Naz"]
 
     def __init__(self, options, auth):
         """
@@ -102,10 +104,12 @@ class DialogBot:
         This really should be obvious. Tweets the.. uh.. tweet.
         """
         api = tweepy.API(self.auth)
-        print "update tweet " + '@%s %s' % (name, self.messages[randint(0, len(self.messages) - 1)])
+        random_message = self.messages[randint(0, len(self.messages) - 1)]
+        random_bot = "^" + self.bot_agents[randint(0, len(self.bot_agents) - 1)] + "Bot"
+        print "update tweet " + '@%s %s %s' % (name, random_message, random_bot)
         if not self.options.dry:
             # Don't tweet on dry run. It's not nice
-            api.update_status('@%s %s' % (name, self.messages[randint(0, len(self.messages) - 1)]), tweetid)
+            api.update_status('@%s %s %s' % (name, random_message, random_bot), tweetid)
 
     def update_record(self):
         """
