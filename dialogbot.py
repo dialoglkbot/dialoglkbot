@@ -74,6 +74,9 @@ class DialogBot:
             if tweet.in_reply_to_status_id is not None:
                 self.shouldtweet = False
                 return
+            if '?' not in tweet.text:
+                self.shouldtweet = False
+                return
             if self.check_time(tweet.author.screen_name):
                 self.shouldtweet = True
             else:
