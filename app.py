@@ -59,4 +59,4 @@ if __name__ == "__main__":
     # Create listener for search stream
     listner = TweetListener()
     stream = Stream(auth, listner, timeout=None)
-    stream.filter(track="@dialoglk")
+    stream.filter(track=["@dialoglk"])
