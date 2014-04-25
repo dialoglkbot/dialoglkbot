@@ -32,7 +32,6 @@ from random import randint
 
 class DialogBot:
     REC_FILE_NAME = "records.txt"
-    shouldtweet = False
     auth = {}
     options = []
     records = {}
@@ -64,26 +63,19 @@ class DialogBot:
         self.load_record()
 
         if self.options.dry:
-            self.shouldtweet = True  # ignore check conditions for testing
+            pass  # ignoring check conditions for testing
         else:
-            if tweet.in_reply_to_screen_name == "dialoglk":
-                self.shouldtweet = True
-            else:
-                self.shouldtweet = False
-                return
+            if not tweet.in_reply_to_screen_name == "dialoglk":
+                return  # no point replying if tweet isn't directed at @dialoglk
             if tweet.in_reply_to_status_id is not None:
-                self.shouldtweet = False
-                return
+                return  # ignoring tweets that are not the start of a conversation
             if '?' not in tweet.text:
-                self.shouldtweet = False
-                return
-            if self.check_time(tweet.author.screen_name):
-                self.shouldtweet = True
-            else:
-                return
+                return  # ignoring tweets without a question
+            if not self.check_time(tweet.author.screen_name):
+                return  # ignoring authors that have been replied to in the last 24 hours
 
-        if self.shouldtweet:
-            self.tweet(tweet.author.screen_name, tweet.id)
+        # conditions passed. send the tweet.
+        self.tweet(tweet.author.screen_name, tweet.id)
 
     def check_time(self, name):
         """

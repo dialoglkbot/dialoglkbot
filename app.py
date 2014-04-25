@@ -28,6 +28,7 @@ from tweepy import Stream, StreamListener, OAuthHandler
 from dialogbot import DialogBot
 from settings import settings
 from optparse import OptionParser
+import datetime
 
 
 # ----- Error Handling is for the weak -----
@@ -55,6 +56,8 @@ if __name__ == "__main__":
     # Tweepy auth object
     auth = OAuthHandler(settings['tw-consumer-key'], settings['tw-consumer-secret'])
     auth.set_access_token(settings['tw-app-key'], settings['tw-app-secret'])
+
+    print "Application started! %s" % datetime.datetime.now().strftime('%Y%m%d %H:%M:%S')
 
     # Create listener for search stream
     listner = TweetListener()
