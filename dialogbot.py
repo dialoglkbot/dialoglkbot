@@ -44,9 +44,18 @@ class DialogBot:
                 "We have noted your concern. We'll make sure that this will not happen in future.",
                 "Please inbox us your contact number. We'll get back to you with assistance.",
                 "DM your connection no. we'll keep you posted.",
-                "Thank you for letting us know, We'll look into it and get back to soon with assistance."]
+                "Thank you for letting us know, We'll look into it and get back to soon with assistance.",
+                "Please DM us your connection number, exact location, phone model & Displayed Cell. Thanks.",
+                "Please DM us your contact number & exact location details to inform our Network Team.",
+                "Please DM us your connection number for us to assist you better.",
+                "Awww, DM your contact no and we'll get an expert assist you.",
+                "Is it possible for you to DM us your connection number to check further please?",
+                "We will look into your concern. Please DM us your issue and we'll get back to you with assistance.",
+                "Thank you for getting in touch with us. Please give us a shout if there is anything else. :) ",
+                "DM your connection no and contact no, Expert will connect you to assist."
+                ]
 
-    bot_agents = ["Riya", "Niky", "Suzy", "Hkk", "Mili", "Naz"]
+    bot_agents = ["Riya", "Niky", "Suzy", "Hkk", "Mili", "Naz", "Nabs"]
 
     def __init__(self, options, auth):
         """
